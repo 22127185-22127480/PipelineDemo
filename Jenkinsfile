@@ -13,9 +13,9 @@ pipeline {
     }
     stages{
         stage('PULL CODE') {
-             steps {
-                git branch: 'main', url: 'https://github.com/22127185-22127480/PipelineDemo.git'
-             }
+            steps {
+            git branch: 'main', url: 'https://github.com/22127185-22127480/PipelineDemo.git'
+            }
         }
         stage('BUILD'){
             steps {
@@ -27,7 +27,7 @@ pipeline {
                 sh 'mvn test'
             }
         }
-        stages('DEPLOY') {
+        stage('DEPLOY') {
             steps {
                 sh 'docker build -f Dockerfile -t $DOCKER_REGISTRY/$DOCKER_REPOSITORY:$DOCKER_TAG .'
                 sh 'docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $DOCKER_REGISTRY'
