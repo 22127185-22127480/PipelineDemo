@@ -15,7 +15,7 @@ pipeline {
         stage('PULL CODE') {
             steps {
                 git branch: 'main', url: 'https://github.com/22127185-22127480/PipelineDemo.git',
-                credentialsId : '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'
+                credentialsId : 'github_access_token'
             }
         }
         stage('BUILD') {
