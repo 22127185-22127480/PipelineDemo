@@ -5,7 +5,6 @@ pipeline {
         jdk "java21"
     }
     environment {
-        MAVEN_OPTS = "-Dmaven.repo.local=/home/gitlab-runner/m2/repository"
         DOCKER_REGISTRY = "22127480"
         DOCKER_REPOSITORY = "22127185-22127480"
         DOCKER_TAG = "${env.BUILD_ID}"
@@ -29,12 +28,19 @@ pipeline {
             }
         }
         stages('DEPLOY') {
-            stage('BUILD IMAGE') {
-                steps {
-                    sh 'docker build -f Dockerfile -t $DOCKER_REGISTRY/$DOCKER_REPOSITORY:$DOCKER_TAG .'
-                    sh 'docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $DOCKER_REGISTRY'
-                    sh 'docker push $DOCKER_REGISTRY/$DOCKER_REPOSITORY:$DOCKER_TAG'
-                }
+            steps {
+                sh 'docker build -f Dockerfile -t $DOCKER_REGISTRY/$DOCKER_REPOSITORY:$DOCKER_TAG .'
+                sh 'docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $DOCKER_REGISTRY'
+                sh 'docker push $DOCKER_REGISTRY/$DOCKER_REPOSITORY:$DOCKER_TAG'
+
+                sh 'docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $DOCKER_REGISTRY'
+                sh 'docker pull $DOCKER_REGISTRY/$DOCKER_REPOSITORY:$DOCKER_TAG'
+                sh 
+                """
+                    docker run -d \
+                    -p 80:80 \
+                    $DOCKER_REGISTRY/$DOCKER_REPOSITORY:$DOCKER_TAG
+                """
             }
         }
     }
