@@ -10,7 +10,7 @@ pipeline {
         DOCKER_REPOSITORY = "22127185-22127480"
         DOCKER_TAG = "${env.BUILD_ID}"
         CI_REGISTRY_USER = "22127185"
-        CI_REGISTRY_PASSWORD: "B!f_4Rs2FNqUrW."
+        CI_REGISTRY_PASSWORD = "B!f_4Rs2FNqUrW."
     }
     stages{
         stage('PULL CODE') {
