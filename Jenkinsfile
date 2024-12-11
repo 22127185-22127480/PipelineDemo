@@ -31,16 +31,16 @@ pipeline {
             steps {
                 // Docker build and push
                 sh '''
-                    sudo docker build -f Dockerfile -t $DOCKER_REGISTRY/$DOCKER_REPOSITORY:$DOCKER_TAG .
-                    sudo docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $DOCKER_REGISTRY
-                    sudo docker push $DOCKER_REGISTRY/$DOCKER_REPOSITORY:$DOCKER_TAG
+                    docker build -f Dockerfile -t $DOCKER_REGISTRY/$DOCKER_REPOSITORY:$DOCKER_TAG .
+                    docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $DOCKER_REGISTRY
+                    docker push $DOCKER_REGISTRY/$DOCKER_REPOSITORY:$DOCKER_TAG
                 '''
 
                 // Docker pull and run
                 sh '''
-                    sudo docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $DOCKER_REGISTRY
-                    sudo docker pull $DOCKER_REGISTRY/$DOCKER_REPOSITORY:$DOCKER_TAG
-                    sudo docker run -d -p 80:80 $DOCKER_REGISTRY/$DOCKER_REPOSITORY:$DOCKER_TAG
+                    docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $DOCKER_REGISTRY
+                    docker pull $DOCKER_REGISTRY/$DOCKER_REPOSITORY:$DOCKER_TAG
+                    docker run -d -p 80:80 $DOCKER_REGISTRY/$DOCKER_REPOSITORY:$DOCKER_TAG
                 '''
             }
         }
