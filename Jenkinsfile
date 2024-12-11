@@ -1,8 +1,8 @@
 pipeline {
 	agent any
     tools {
-        maven "MAVEN3"
-        jdk "JDK21"
+        maven "maven3.8.7"
+        jdk "java21"
     }
     environment {
         MAVEN_OPTS = "-Dmaven.repo.local=/home/gitlab-runner/m2/repository"
