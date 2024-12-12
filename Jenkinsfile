@@ -5,7 +5,7 @@ pipeline {
         jdk "java-17"
     }
     environment {
-        DOCKER_REGISTRY = "22127480"
+        DOCKER_REGISTRY = "22127185"
         DOCKER_REPOSITORY = "22127185-22127480"
         DOCKER_TAG = "${env.BUILD_ID}"
         CI_REGISTRY_USER = "22127185"
