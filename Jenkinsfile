@@ -32,12 +32,12 @@ pipeline {
                 // Docker build and push
                 sh '''
                     docker build -f Dockerfile -t $DOCKER_REGISTRY/$DOCKER_REPOSITORY:$DOCKER_TAG .
-                    docker push $DOCKER_REGISTRY/$DOCKER_REPOSITORY:$DOCKER_TAG
+                    
                 '''
 
                 // Docker pull and run
                 sh '''
-                    docker pull $DOCKER_REGISTRY/$DOCKER_REPOSITORY:$DOCKER_TAG
+                    
                     docker run --name my-container -d -p 80:80 $DOCKER_REGISTRY/$DOCKER_REPOSITORY:$DOCKER_TAG
                 '''
             }
