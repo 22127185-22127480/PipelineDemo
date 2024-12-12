@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools {
-        maven "maven3.9.6"
+        maven "maven3.8.7"
         jdk "java-17"
     }
     environment {
@@ -14,7 +14,7 @@ pipeline {
     stages {
         stage('PULL CODE') {
             steps {
-                git branch: 'main', url: 'https://github.com/22127185-22127480/PipelineDemo.git'
+                git branch: 'dev', url: 'https://github.com/22127185-22127480/PipelineDemo.git'
             }
         }
         stage('BUILD') {
