@@ -40,7 +40,7 @@ pipeline {
                 sh '''
                     docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $DOCKER_REGISTRY
                     docker pull $DOCKER_REGISTRY/$DOCKER_REPOSITORY:$DOCKER_TAG
-                    docker run -d -p 80:80 $DOCKER_REGISTRY/$DOCKER_REPOSITORY:$DOCKER_TAG
+                    docker run --name my-container -d -p 80:80 $DOCKER_REGISTRY/$DOCKER_REPOSITORY:$DOCKER_TAG
                 '''
             }
         }
