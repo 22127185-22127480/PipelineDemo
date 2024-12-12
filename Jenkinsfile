@@ -30,15 +30,11 @@ pipeline {
         stage('DEPLOY') {
             steps {
                 // Docker build
-                sh '''
-                    docker build -f Dockerfile -t $DOCKER_REGISTRY/$DOCKER_REPOSITORY:$DOCKER_TAG .
-                '''
+                sh 'docker build -f Dockerfile -t $DOCKER_REGISTRY/$DOCKER_REPOSITORY:$DOCKER_TAG .'
 
                 // Docker remove exist stopped container and run new container
-                sh '''
-                    echo y | docker container prune
-                    docker run --name my-container -d -p 80:80 $DOCKER_REGISTRY/$DOCKER_REPOSITORY:$DOCKER_TAG
-                '''
+                sh 'echo y | docker container prune '
+                sh 'docker run --name my-container -d -p 80:80 $DOCKER_REGISTRY/$DOCKER_REPOSITORY:$DOCKER_TAG'
             }
         }
     }
