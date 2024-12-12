@@ -36,7 +36,7 @@ pipeline {
 
                 // Docker remove exist stopped container and run new container
                 sh '''
-                    docker container prune
+                    echo y | docker container prune
                     docker run --name my-container -d -p 80:80 $DOCKER_REGISTRY/$DOCKER_REPOSITORY:$DOCKER_TAG
                 '''
             }
