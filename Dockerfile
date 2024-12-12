@@ -1,4 +1,4 @@
-FROM maven:3.9.6-amazoncorretto-17
+FROM maven:3.8.7-amazoncorretto-17
 # Set the working directory to /opt/app
 WORKDIR /opt/app
 # Copy the Maven project to the container workplace to isolate service
