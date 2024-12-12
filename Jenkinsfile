@@ -33,6 +33,7 @@ pipeline {
                 sh 'docker build -f Dockerfile -t $DOCKER_REGISTRY/$DOCKER_REPOSITORY:$DOCKER_TAG .'
 
                 // Docker remove exist stopped container and run new container
+                sh 'docker stop my-container || true'
                 sh 'echo y | docker container prune '
                 sh 'docker run --name my-container -d -p 80:80 $DOCKER_REGISTRY/$DOCKER_REPOSITORY:$DOCKER_TAG'
             }
