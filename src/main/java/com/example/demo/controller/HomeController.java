@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class HomeController {
     @GetMapping
     public String index() {
-        return "HELLO WORLD";
+        return "HELLO MY FRIEND";
     }
 }
