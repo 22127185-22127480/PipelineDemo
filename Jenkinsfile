@@ -32,7 +32,6 @@ pipeline {
                 // Docker build and push
                 sh '''
                     docker build -f Dockerfile -t $DOCKER_REGISTRY/$DOCKER_REPOSITORY:$DOCKER_TAG .
-                    // docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $DOCKER_REGISTRY
                     docker push $DOCKER_REGISTRY/$DOCKER_REPOSITORY:$DOCKER_TAG
                 '''
 
