@@ -9,7 +9,7 @@ RUN mvn clean package -DskipTests
 # Environment variable for Spring profile
 ENV SPRING_PROFILES_ACTIVE=prod
 # Copy the built JAR to the working directory
-COPY target/app.jar /opt/app/app.jar
+COPY target/app-0.0.1-SNAPSHOT.jar /opt/app/app.jar
 # Expose the application port
 EXPOSE 80
 # Set the entrypoint for the container
