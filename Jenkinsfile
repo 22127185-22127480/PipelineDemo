@@ -29,23 +29,16 @@ pipeline {
         }
         stage('DEPLOY') {
             steps {
-                # Build the Docker image
                 sh '''
                 docker build -f Dockerfile -t $DOCKER_REGISTRY/$DOCKER_REPOSITORY:$DOCKER_TAG .
                 '''
-                
-                # Stop and remove the existing container (if any)
                 sh '''
                 docker stop my-container || true
                 docker rm my-container || true
                 '''
-                
-                # Remove unused containers to free up resources
                 sh '''
                 docker container prune -f
                 '''
-                
-                # Run the new container
                 sh '''
                 docker run --name my-container -d -p 80:80 $DOCKER_REGISTRY/$DOCKER_REPOSITORY:$DOCKER_TAG
                 '''
