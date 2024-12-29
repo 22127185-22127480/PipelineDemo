@@ -1,4 +1,2 @@
 # PipelineDemo
-
-...
 Trigger build
