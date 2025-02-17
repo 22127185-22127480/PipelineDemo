@@ -2,14 +2,9 @@ pipeline {
     agent any
     tools {
         maven "maven3.9.6"
-        jdk "java-17"
+        jdk "java-21"
     }
     environment {
-        DOCKER_REGISTRY = "22127185"
-        DOCKER_REPOSITORY = "22127185-22127480"
-        DOCKER_TAG = "${env.BUILD_ID}"
-        CI_REGISTRY_USER = "22127185"
-        CI_REGISTRY_PASSWORD = "B!f_4Rs2FNqUrW."
     }
     stages {
         stage('PULL CODE') {
